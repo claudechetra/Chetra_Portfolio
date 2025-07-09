@@ -1,0 +1,33 @@
+﻿@model Chetra_Portfolio.Models.AboutMe
+
+<@{
+ViewData["Title"] = "About Me";
+        }
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-7">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body p-5">
+                    <h1 class="mb-4 text-center text-primary">@Model.FullName</h1>
+                    <p class="lead mb-4 text-muted">@Model.Bio</p>
+
+                    <h5 class="text-uppercase text-secondary mt-4">Skills</h5>
+                    <ul class="list-group list-group-flush mb-4">
+                        @foreach (var skill in Model.Skills.Split(','))
+                        {
+                                <li class="list-group-item ps-0">@skill.Trim()</li>
+                        }
+                    </ul>
+
+                    <div class="mt-4">
+                        <h6 class="text-muted">Get in touch</h6>
+                        <a class="btn btn-outline-primary mt-2" href="mailto:@Model.ContactEmail">
+                            <i class="bi bi-envelope-fill"></i> @Model.ContactEmail
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

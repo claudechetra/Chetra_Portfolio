@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Chetra_Portfolio</title>
+    <!-- Bootstrap Icons CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Chetra_Portfolio.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+</head>
+<body>
+    @{
+        var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+        var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+        var showHeader = !(currentController == "Home" && currentAction == "About");
+    }
+
+    @if (showHeader)
+    {
+        <header class="bg-white shadow-sm">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto text-center">
+
+                            @if (!(currentController == "Home" && currentAction == "About"))
+                            {
+                                <li class="nav-item">
+                                    <a class="btn btn-outline-primary rounded-pill btn-sm m-1" asp-action="About" asp-controller="Home">
+                                        <i class="bi bi-person-circle me-1"></i> About
+                                    </a>
+                                </li>
+                            }
+
+                            @if (!(currentController == "Home" && currentAction == "Skills"))
+                            {
+                                <li class="nav-item">
+                                    <a class="btn btn-outline-primary rounded-pill btn-sm m-1" asp-action="Skills" asp-controller="Home">
+                                        <i class="bi bi-code-slash me-1"></i> Skills
+                                    </a>
+                                </li>
+                            }
+
+                            @if (!(currentController == "Home" && currentAction == "Education"))
+                            {
+                                <li class="nav-item">
+                                    <a class="btn btn-outline-primary rounded-pill btn-sm m-1" asp-action="Education" asp-controller="Home">
+                                        <i class="bi bi-mortarboard-fill me-1"></i> Education
+                                    </a>
+                                </li>
+                            }
+
+                            @if (!(currentController == "Home" && currentAction == "Projects"))
+                            {
+                                <li class="nav-item">
+                                    <a class="btn btn-outline-primary rounded-pill btn-sm m-1" asp-action="Projects" asp-controller="Home">
+                                        <i class="bi bi-diagram-3 me-1"></i> Projects
+                                    </a>
+                                </li>
+                            }
+
+                            @if (!(currentController == "Home" && currentAction == "Contact"))
+                            {
+                                <li class="nav-item">
+                                    <a class="btn btn-outline-primary rounded-pill btn-sm m-1" asp-action="Contact" asp-controller="Home">
+                                        <i class="bi bi-envelope-fill me-1"></i> Contact
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+    }
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2025 - Chetra Claude - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,  // how long each animation lasts (ms)
+            once: true      // animate only the first time it's scrolled into view
+        });
+    </script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
